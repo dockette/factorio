@@ -1,0 +1,107 @@
+#!/bin/bash
+
+# Docker configuration
+CONTAINER_NAME=factorio
+IMAGE_NAME=dockergames/factorio:latest
+MAX_MEMORY=4gb
+
+# GUI configuration
+XSOCK=/tmp/.X11-unix
+XAUTH=/tmp/.docker.xauth
+touch $XAUTH
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+# Functions
+usage() {
+cat << EOF
+Usage: ${0##*/} [-p | -s | -t] <folder> [-h]
+
+Run factorio in isolated docker container.
+
+Options:
+
+  -h            Display this help and exit.
+  -p <folder>   Portable mode. Folder points to your custom data dir.
+  -s <folder>   Sources mode. Folder points to factorio root dir.
+  -t            Temporary mode (no volumes).
+EOF
+}
+
+portable() {
+	if [ $# -eq 0 ] ; then
+		echo "Please fill portable folder"
+		exit 1
+	fi
+	
+	docker run -it \
+		--rm \
+		--memory $MAX_MEMORY \
+		-v $XSOCK:$XSOCK:rw \
+		-v $XAUTH:$XAUTH:rw \
+		-e DISPLAY=$DISPLAY \
+		-e XAUTHORITY=$XAUTH \
+		--device=/dev/dri/card0:/dev/dri/card0 \
+		--device /dev/snd \
+		-v $1/saves:/home/factorio/saves \
+		--name $CONTAINER_NAME \
+		$IMAGE_NAME
+}
+
+sources() {
+	if [ $# -eq 0 ] ; then
+		echo "Please fill sources folder"
+		exit 1
+	fi
+
+	docker run -it \
+		--rm \
+		--memory $MAX_MEMORY \
+		-v $XSOCK:$XSOCK:rw \
+		-v $XAUTH:$XAUTH:rw \
+		-e DISPLAY=$DISPLAY \
+		-e XAUTHORITY=$XAUTH \
+		--device=/dev/dri/card0:/dev/dri/card0 \
+		--device /dev/snd \
+		-v $1:/home/factorio \
+		--name $CONTAINER_NAME \
+		$IMAGE_NAME
+}
+
+temporary() {
+	docker run -it \
+		--rm \
+		--memory $MAX_MEMORY \
+		-v $XSOCK:$XSOCK:rw \
+		-v $XAUTH:$XAUTH:rw \
+		-e DISPLAY=$DISPLAY \
+		-e XAUTHORITY=$XAUTH \
+		--device=/dev/dri/card0:/dev/dri/card0 \
+		--device /dev/snd \
+		--name $CONTAINER_NAME \
+		$IMAGE_NAME
+}
+
+# Main switch
+case "$1" in
+	-s)
+		sources $2
+		exit 0
+		;;
+	-p)
+		portable $2
+		exit 0
+		;;
+	-t)
+		temporary
+		exit 0
+		;;
+	-h)
+		usage
+		exit 0
+		;;
+	*)
+		usage
+		exit 1
+		;;
+esac
+shift
