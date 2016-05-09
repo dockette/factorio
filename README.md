@@ -10,6 +10,18 @@
 Base container is based on debian sid. 
 Some additional libraries are downloaded for running this game.
 
+## Install
+
+```sh
+# download startup script
+wget https://raw.githubusercontent.com/dockergames/factorio/master/bin/run -O factorio 
+
+# run script 
+sh factorio
+
+# and see usage..
+```
+
 ## Usage
 
 This repo contains a starter bash script, which is located in **/bin** folder.
