@@ -36,6 +36,10 @@ You should pick this mode.
 
 If you have your factorio game already downloaded. Just pick this mode.
 
+### Temporary mode
+
+Just start game one-time. There will be no stored data after exit. 
+
 -----
 
 That's all. I've tested this container on Linux Mint 17.3 x64.
