@@ -1,6 +1,6 @@
 # Factorio in Docker
 
-See `[dockergames/factorio](https://hub.docker.com/r/dockergames/factorio/)` on Docker Hub.
+See [dockergames/factorio](https://hub.docker.com/r/dockergames/factorio/) on Docker Hub.
 
 ## Prerequisites
 
