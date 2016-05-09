@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# Custom configuration
+MAX_MEMORY=4gb
+
 # Docker configuration
 CONTAINER_NAME=factorio
-IMAGE_NAME=dockergames/factorio:latest
-MAX_MEMORY=4gb
+PORTABLE_IMAGE_NAME=dockergames/factorio:latest
+TEMPORARY_IMAGE_NAME=dockergames/factorio:latest
+SOURCES_IMAGE_NAME=dockergames/factorio:sources
 
 # GUI configuration
 XSOCK=/tmp/.X11-unix
@@ -44,7 +48,7 @@ portable() {
 		--device /dev/snd \
 		-v $1/saves:/home/factorio/saves \
 		--name $CONTAINER_NAME \
-		$IMAGE_NAME
+		$PORTABLE_IMAGE_NAME
 }
 
 sources() {
@@ -64,7 +68,7 @@ sources() {
 		--device /dev/snd \
 		-v $1:/home/factorio \
 		--name $CONTAINER_NAME \
-		$IMAGE_NAME
+		$SOURCES_IMAGE_NAME
 }
 
 temporary() {
@@ -78,7 +82,7 @@ temporary() {
 		--device=/dev/dri/card0:/dev/dri/card0 \
 		--device /dev/snd \
 		--name $CONTAINER_NAME \
-		$IMAGE_NAME
+		$TEMPORARY_IMAGE_NAME
 }
 
 # Main switch
