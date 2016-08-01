@@ -56,7 +56,11 @@ Just start game one-time. There will be no stored data after exit.
 
 -----
 
-That's all. I've tested this container on Linux Mint 17.3 x64.
+That's all. I've tested this container on multipl linux machines.
+
+- Linux Mint 17.3 [x64]
+- Linux Mint 18 [x64]
+- Ubuntu 15.10 [x64]
 
 If you will have a troubles with it, please open issue ticket. 
 
