@@ -12,6 +12,12 @@ See [dockergames/factorio](https://hub.docker.com/r/dockergames/factorio/) on Do
 Base container is based on debian sid. 
 Some additional libraries are downloaded for running this game.
 
+## Prolog
+
+Here you can find more information about how to run X server in docker containers.
+
+http://wiki.ros.org/docker/Tutorials/GUI
+
 ## Install
 
 ```sh
