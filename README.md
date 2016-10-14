@@ -2,6 +2,8 @@
 
 See [dockergames/factorio](https://hub.docker.com/r/dockergames/factorio/) on Docker Hub.
 
+![captcha](https://raw.githubusercontent.com/whaleapps/factorio/master/docs/factorio.png)
+
 ## Prerequisites
 
 - Docker >= 1.7.0
