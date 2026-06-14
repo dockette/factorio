@@ -1,6 +1,13 @@
 # Factorio in Docker
 
-See [dockergames/factorio](https://hub.docker.com/r/dockergames/factorio/) on Docker Hub.
+<p align=center>
+   <a href="https://github.com/sponsors/f3l1x"><img src="https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ea4aaa" alt="GitHub Sponsors"></a>
+   <a href="https://github.com/orgs/dockette/discussions"><img src="https://img.shields.io/badge/support-discussions-6f42c1" alt="Support/Discussions"></a>
+</p>
+
+This repository is a historical mirror of the original Dockette Factorio desktop image. It is not actively maintained as a current Dockette image, and no `dockette/factorio` Docker Hub image is published for new deployments.
+
+The maintained image for this lineage lives at [`dockergames/factorio`](https://hub.docker.com/r/dockergames/factorio). The old scripts in this repository still reference that namespace for archive purposes.
 
 ![Factorio in Docker container](https://raw.githubusercontent.com/whaleapps/factorio/master/docs/factorio.png)
 
