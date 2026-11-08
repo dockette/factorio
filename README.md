@@ -1,54 +1,37 @@
-# Factorio in Docker
+<h1 align=center>Dockette / Factorio</h1>
 
 <p align=center>
    <a href="https://github.com/sponsors/f3l1x"><img src="https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ea4aaa" alt="GitHub Sponsors"></a>
    <a href="https://github.com/orgs/dockette/discussions"><img src="https://img.shields.io/badge/support-discussions-6f42c1" alt="Support/Discussions"></a>
 </p>
 
-This repository is a historical mirror of the original Dockette Factorio desktop image. It is not actively maintained as a current Dockette image, and no `dockette/factorio` Docker Hub image is published for new deployments.
+<p align=center>
+   🎁 Factorio desktop game in Docker
+</p>
 
-The maintained image for this lineage lives at [`dockergames/factorio`](https://hub.docker.com/r/dockergames/factorio). The old scripts in this repository still reference that namespace for archive purposes.
+-----
 
-![Factorio in Docker container](https://raw.githubusercontent.com/whaleapps/factorio/master/docs/factorio.png)
+> [!WARNING]
+> **Deprecated.** These Dockerfiles are no longer maintained, and the repository is archived. They target Factorio
+> 0.12.x (2016) on `debian:sid` via the `dockergames/factorio` base image, which is not published on Docker Hub. For a
+> maintained Factorio image, use [`factoriotools/factorio`](https://hub.docker.com/r/factoriotools/factorio) (dedicated server).
 
-## Prerequisites
-
-- Docker >= 1.7.0
-- Graphic card
-
-## Containers
-
-Base container is based on debian sid. 
-Some additional libraries are downloaded for running this game.
-
-## Prolog
-
-Here you can find more information about how to run X server in docker containers.
-
-http://wiki.ros.org/docker/Tutorials/GUI
-
-## Install
-
-```sh
-# download startup script
-wget https://raw.githubusercontent.com/dockergames/factorio/master/bin/run -O factorio 
-
-# run script 
-sh factorio
-
-# and see usage..
-```
+Dockerfiles and a launcher script for running the Factorio desktop game (X11, needs a graphics card) in Docker. The
+base image is built on `debian:sid` with the libraries the game needs. Versions `0.12.33` and `0.12.35` live in
+`linux/x64`, and `sources` runs an existing Factorio directory.
 
 ## Usage
 
-This repo contains a starter bash script, which is located in **/bin** folder.
-
 ```sh
+# download the startup script
+wget https://raw.githubusercontent.com/dockergames/factorio/master/bin/run -O factorio
+
+# run it and see usage
+sh factorio
+```
+
+```
 Usage: run [-p | -s | -t] <folder> [-h]
-
-Run factorio in isolated docker container.
-
-Options:
 
   -h            Display this help and exit.
   -p <folder>   Portable mode. Folder points to your custom data dir.
@@ -56,32 +39,13 @@ Options:
   -t            Temporary mode (no volumes).
 ```
 
-### Portable mode
+- **Portable** downloads a fresh installation of the game and keeps its data in the given folder.
+- **Sources** uses a Factorio game you already have downloaded.
+- **Temporary** starts the game once, nothing is stored after exit.
 
-If you want to download a fresh installation of game a just started. 
-You should pick this mode.
-
-### Sources mode
-
-If you have your factorio game already downloaded. Just pick this mode.
-
-### Temporary mode
-
-Just start game one-time. There will be no stored data after exit. 
-
------
-
-That's all. I've tested this container on multipl linux machines.
-
-- Linux Mint 17.3 [x64]
-- Linux Mint 18 [x64]
-- Ubuntu 14.04 LTS [x64]
-- Ubuntu 15.10 [x64]
-
-If you will have a troubles with it, please open issue ticket. 
-
-Thanks Felix.
+Requires Docker >= 1.7.0. To run an X server in a container, see the [ROS GUI tutorial](http://wiki.ros.org/docker/Tutorials/GUI).
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
